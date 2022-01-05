@@ -12,12 +12,12 @@ namespace Example.Shared
         public T Result { get; private set; }
         public bool IsWaitingResult { get; private set; } = true;
 
-
-        public void Set(T result, bool thenStop = false)
+        public void Set(T result, bool thenStop = true)
         {
             Result = result;
             if (thenStop) Stop();
         }
+
         public void Stop()
         {
             IsWaitingResult = false;
@@ -27,5 +27,11 @@ namespace Example.Shared
             //Result = default;
             IsWaitingResult = true;
         }
+
+        public string Send(params string[] passValues)
+        {
+            return Key.SendWithSplitter(passValues);
+        }
+
     }
 }
